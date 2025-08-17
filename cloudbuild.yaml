@@ -44,7 +44,6 @@ steps:
   - id: 'Get GKE Credentials'
     name: 'gcr.io/cloud-builders/gcloud' # Use this for newer gcloud versions
     args:
-      - 'gcloud'
       - 'container'
       - 'clusters'
       - 'get-credentials'
