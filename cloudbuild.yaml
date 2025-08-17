@@ -39,7 +39,7 @@ steps:
         #- '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
       - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1'
 
-  # 5. Get GKE Credentials
+  
   # This step configures kubectl to connect to your GKE cluster.
   - id: 'Get GKE Credentials'
     name: 'gcr.io/cloud-builders/gke-gcloud-auth-plugin' # Use this for newer gcloud versions
