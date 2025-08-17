@@ -52,7 +52,7 @@ steps:
       - 'clusters'
       - 'get-credentials'
       - '${_GKE_CLUSTER_NAME}'
-      - '--region=${_GKE_CLUSTER_LOCATION}' # Use --region if your cluster is regional
+      - '--zone=${_GKE_CLUSTER_LOCATION}' # Use --region if your cluster is regional
       - '--project=$PROJECT_ID'
 
   # ynamically updates the image tag in your frontend deployment file
@@ -129,7 +129,7 @@ images:
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:latest'
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1'
-ioptions:
+options:
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET # Add this line
 serviceAccount: projects/eighth-beacon-466412-f3/serviceAccounts/trigger.481066924543-compute@developer.gserviceaccount.com
 
