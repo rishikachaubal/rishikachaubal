@@ -52,11 +52,10 @@ steps:
       - 'clusters'
       - 'get-credentials'
       - '${_GKE_CLUSTER_NAME}'
-      - '--zone=${_GKE_CLUSTER_LOCATION}' # Use --region if your cluster is regional
+      - '--region=${_GKE_CLUSTER_LOCATION}' # Use --region if your cluster is regional
       - '--project=$PROJECT_ID'
 
-  # 6. Update Frontend Image Tag in Deployment YAML
-  # This step dynamically updates the image tag in your frontend deployment file
+  # ynamically updates the image tag in your frontend deployment file
   # to use the specific image built in this Cloud Build run.
   - id: 'Update Frontend Deployment Image'
     name: 'gcr.io/cloud-builders/gcloud' # Using gcloud builder as it has bash
