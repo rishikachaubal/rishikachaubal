@@ -60,7 +60,7 @@ steps:
     args:
       - '-c'
       - |
-        sed -i "s|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:.*|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}|" kubernetes/frontend-deployment.yaml
+        sed -i "s|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:latest|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}|" kubernetes/frontend-deployment.yaml
 
   # 7. Update Backend Image Tag in Deployment YAML
   # This step dynamically updates the image tag in your backend deployment file.
@@ -70,7 +70,7 @@ steps:
     args:
       - '-c'
       - |
-        sed -i "s|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:.*|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}|" kubernetes/backend-deployment.yaml
+        sed -i "s|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1*|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}|" kubernetes/backend-deployment.yaml
 
   # 8. Deploy Frontend Deployment to GKE
   - id: 'Deploy Frontend Deployment'
