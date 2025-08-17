@@ -1,7 +1,4 @@
-#_GCR_HOSTNAME: "gcr.io" # Or "us.gcr.io", "eu.gcr.io", etc.
-#_GKE_CLUSTER_NAME: "hello-app-cluster" # REPLACE WITH YOUR GKE CLUSTER NAME
-#_GKE_CLUSTER_LOCATION: "us-central1-c" # REPLACE WITH YOUR GKE CLUSTER REGION/ZONE (e.g., us-central1, us-central1-a)
-#_GKE_NAMESPACE: "default" # The Kubernetes namespace to deploy to
+
 
 steps:
   # 1. Build Frontend Docker Image
