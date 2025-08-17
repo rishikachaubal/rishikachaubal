@@ -1,0 +1,71 @@
+# my-webapp-chart/values.yaml
+
+# Global settings (optional, but good for common labels/names)
+global:
+  nameOverride: ""
+  fullnameOverride: ""
+
+# Frontend configuration
+frontend:
+  enabled: true
+  name: "frontend"
+  replicaCount: 1
+  image:
+    repository: gcr.io/eighth-beacon-466412-f3/frontend # Base repository
+    tag: "latest1" # Leave empty if using digest, or specify a tag like "latest" or "v1.0.0"
+      #digest: "sha256:ecb0da7add5d0bfd609dae7da2133957f366bd650efbde1ebb3d68ab1520beba" # Your specific digest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 80
+
+  resources:
+    limits:
+      memory: "64Mi"
+      # cpu: 200m # Add if needed
+    requests:
+      
+# Backend configuration
+backend:
+  enabled: true
+  name: "backend" # This is the Helm internal name, not the app label
+  replicaCount: 1
+  image:
+    repository: gcr.io/eighth-beacon-466412-f3/backend
+    tag: "latest" # Leave empty if using digest
+      #    digest: "sha256:116150997838dd10101d77339739154b71b1a5966a665cf445495cca94c4a485" # Your specific digest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: LoadBalancer # Changed from ClusterIP to match your manifest
+    port: 5000
+    targetPort: 5000
+
+  resources:
+    requests:
+    limits:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+serviceAccount:
+  create: true
+  name: ""
+
+podAnnotations: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
