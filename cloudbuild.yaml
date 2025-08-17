@@ -129,7 +129,9 @@ images:
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:latest'
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1'
-
+ioptions:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET # Add this line
+serviceAccount: projects/eighth-beacon-466412-f3/serviceAccounts/trigger.481066924543-compute@developer.gserviceaccount.com
 
 substitutions:
   _GCR_HOSTNAME: "gcr.io" # Or "us.gcr.io", "eu.gcr.io", etc.
