@@ -7,8 +7,8 @@ steps:
     args:
       - 'build'
       - '-t'
-      - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}' # Tag with short SHA for unique builds
-      - '-t'
+        #      - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}' # Tag with short SHA for unique builds
+        #- '-t'
       - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:latest' # Also tag with latest
       - './frontend' # Path to your frontend Dockerfile context (e.g., directory containing Dockerfile)
 
@@ -18,8 +18,8 @@ steps:
     args:
       - 'build'
       - '-t'
-      - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}' # Tag with short SHA
-      - '-t'
+        #- '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}' # Tag with short SHA
+        #- '-t'
       - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1' # Also tag with latest
       - './backend' # Path to your backend Dockerfile context
 
@@ -28,7 +28,7 @@ steps:
     name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}'
+        #- '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}'
       - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:latest'
 
   # 4. Push Backend Docker Image to GCR
@@ -36,7 +36,7 @@ steps:
     name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
+        #- '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
       - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1'
 
   # 5. Get GKE Credentials
@@ -70,7 +70,7 @@ steps:
     args:
       - '-c'
       - |
-        sed -i "s|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1*|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}|" kubernetes/backend-deployment.yaml
+        sed -i "s|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1|image: ${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}|" kubernetes/backend-deployment.yaml
 
   # 8. Deploy Frontend Deployment to GKE
   - id: 'Deploy Frontend Deployment'
@@ -122,9 +122,9 @@ steps:
 
 # Optional: Specify images to be pushed to GCR/Artifact Registry
 images:
-  - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}'
+  #- '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:${_SHORT_SHA}'
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/frontend:latest'
-  - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
+    #- '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:${_SHORT_SHA}'
   - '${_GCR_HOSTNAME}/eighth-beacon-466412-f3/backend:latest1'
 options:
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET # Add this line
