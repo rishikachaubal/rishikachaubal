@@ -42,7 +42,7 @@ steps:
   
   # This step configures kubectl to connect to your GKE cluster.
   - id: 'Get GKE Credentials'
-    name: 'gcr.io/cloud-builders/gke-gcloud-auth-plugin' # Use this for newer gcloud versions
+    name: 'gcr.io/cloud-builders/gke-gcloud' # Use this for newer gcloud versions
     args:
       - 'gcloud'
       - 'container'
